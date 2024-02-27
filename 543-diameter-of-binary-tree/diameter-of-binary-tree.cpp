@@ -11,25 +11,16 @@
  */
 class Solution {
 public:
-     pair<int,int> find(TreeNode *root)
-{
-    if(root==NULL){
-        pair<int,int> p = make_pair(0,0);   //<height,diameter>
-        return p;
+int ans = 0;
+    int heightTree(TreeNode* root) {
+        if (!root) return 0;
+        int l = heightTree(root->left);
+        int r = heightTree(root->right);
+        ans = max(ans, l + r);
+        return max(l, r) + 1;
     }
-    pair<int,int> left = find(root->left);
-    pair<int,int> right = find(root->right);
-    
-    pair<int,int> temp;
-    temp.first = max(left.first , right.first) +1;
-    temp.second = max(max(left.second , right.second) , left.first+right.first+1);
-    return temp;
-    
-}
-
-
-
-int diameterOfBinaryTree(TreeNode* root) {
-    return find(root).second -1;
-}
+    int diameterOfBinaryTree(TreeNode* root) {
+        heightTree(root);
+        return ans;
+    }
 };
