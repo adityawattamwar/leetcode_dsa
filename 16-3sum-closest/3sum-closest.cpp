@@ -9,6 +9,9 @@ public:
             int k = nums.size() - 1;
             while (j < k) {
                 int sum = nums[i] + nums[j] + nums[k];
+                if(sum==target){
+                    return sum;
+                }
                 if (abs(target-sum)<=mini) {
                     mini=abs(target-sum);
                     final=sum;
