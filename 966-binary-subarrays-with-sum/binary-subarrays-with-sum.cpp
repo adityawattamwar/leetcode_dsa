@@ -8,7 +8,7 @@ public:
         for(int i=0;i<nums.size();i++)
         {
             pS+=nums[i];
-            if(mp[pS-goal])
+            
                 count+=mp[pS-goal];
             mp[pS]++;
         }
