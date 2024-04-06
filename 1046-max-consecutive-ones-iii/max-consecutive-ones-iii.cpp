@@ -11,15 +11,17 @@ public:
             
             cout<<k<<endl;
             if(k<0){
-                while(k<0){
+                if(k<0){
                     if(nums[i]==0){
                         k++;
                     }
                     i++;
                 }
             }
+            if(k>=0){
             maxlen=max(maxlen,(j-i));
-            // cout<<i<<" "<<j<<endl;
+            }
+            
         }
         return maxlen;
     }
