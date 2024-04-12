@@ -1,18 +1,22 @@
 class Solution { // 4 ms, faster than 89.31%
 public:
-    int trap(vector<int>& height) {
-        int n = height.size();
-        vector<int> leftMax(n), rightMax(n);
-        for (int i = 1; i < n; ++i) 
-            leftMax[i] = max(height[i-1], leftMax[i-1]);
-        for (int i = n-2; i >= 0; --i) 
-            rightMax[i] = max(height[i+1], rightMax[i+1]);
-        
-        int ans = 0;
-        for (int i = 0; i < n; ++i) {
-            int waterLevel = min(leftMax[i], rightMax[i]);
-            if (waterLevel >= height[i]) ans += waterLevel - height[i];
+    int trap(vector<int>& A) {
+        int n=A.size();
+        int left=0; int right=n-1;
+        int res=0;
+        int maxleft=0, maxright=0;
+        while(left<=right){
+            if(A[left]<=A[right]){
+                if(A[left]>=maxleft) maxleft=A[left];
+                else res+=maxleft-A[left];
+                left++;
+            }
+            else{
+                if(A[right]>=maxright) maxright= A[right];
+                else res+=maxright-A[right];
+                right--;
+            }
         }
-        return ans;
+        return res;
     }
 };
